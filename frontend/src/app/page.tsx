@@ -1,8 +1,14 @@
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
 export default function Home() {
-  return (
-    <main style={{ padding: 24, fontFamily: "system-ui" }}>
-      <h1>Report Web</h1>
-      <p>Vào link share dạng: <code>/s/demo123</code></p>
-    </main>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/s/demo123');
+  }, [router]);
+
+  return null;
 }

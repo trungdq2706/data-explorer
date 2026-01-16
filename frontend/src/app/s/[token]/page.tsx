@@ -21,6 +21,7 @@ type ExploreState = {
   dateFrom: string;
   dateTo: string;
   platform: string;
+  chartType: "line" | "bar" | "pie" | "scatter";
 };
 
 function isoDate(d: Date) {
@@ -194,18 +195,13 @@ export default function ShareExplorePage() {
     fromD.setDate(today.getDate() - 6);
     const from = isoDate(fromD);
 
-    return { datasetId: "", dimension: "", measure: "", dateFrom: from, dateTo: to, platform: "" };
+    return { datasetId: "", dimension: "", measure: "", dateFrom: from, dateTo: to, platform: "", chartType: "bar" };
   });
 
   const [rows, setRows] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [pageError, setPageError] = useState<string | null>(null);
   const [runError, setRunError] = useState<string | null>(null);
-
-  const chartType = useMemo<"line" | "bar">(
-    () => (state.dimension === "dt" ? "line" : "bar"),
-    [state.dimension]
-  );
 
   useEffect(() => {
     if (!token) return;
@@ -414,7 +410,29 @@ export default function ShareExplorePage() {
             </div>
 
             <div style={styles.filterGroup}>
-              <label style={styles.label}>📅 Từ</label>
+              <label style={styles.label}>� Loại Biểu Đồ</label>
+              <select
+                value={state.chartType}
+                onChange={(e) => setState((p) => ({ ...p, chartType: e.target.value as any }))}
+                style={styles.select as React.CSSProperties}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "#667eea";
+                  e.currentTarget.style.boxShadow = "0 0 0 3px rgba(102, 126, 234, 0.1)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "#e8e8e8";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                <option value="line">📈 Đường</option>
+                <option value="bar">📊 Cột</option>
+                <option value="pie">🥧 Tròn</option>
+                <option value="scatter">⚫ Điểm</option>
+              </select>
+            </div>
+
+            <div style={styles.filterGroup}>
+              <label style={styles.label}>�📅 Từ</label>
               <input
                 type="date"
                 value={state.dateFrom}
@@ -500,13 +518,16 @@ export default function ShareExplorePage() {
         <div style={styles.chartCard}>
           <div style={styles.chartHeader}>
             <h2 style={styles.chartTitle}>
-              📊 {chartType === "line" ? "📈 Biểu đồ đường" : "📊 Biểu đồ cột"}
+              {state.chartType === "line" && "📈 Biểu đồ đường"}
+              {state.chartType === "bar" && "📊 Biểu đồ cột"}
+              {state.chartType === "pie" && "🥧 Biểu đồ tròn"}
+              {state.chartType === "scatter" && "⚫ Biểu đồ điểm"}
             </h2>
             <p style={styles.chartSubtitle}>
               {state.dimension} × {state.measure} • {rows.length} hàng dữ liệu
             </p>
           </div>
-          <EChart type={chartType} rows={rows} xKey={state.dimension} yKey={state.measure} height={450} />
+          <EChart type={state.chartType} rows={rows} xKey={state.dimension} yKey={state.measure} height={450} />
         </div>
       </div>
     </div>
