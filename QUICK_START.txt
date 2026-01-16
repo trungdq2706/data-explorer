@@ -1,0 +1,196 @@
+# ⚡ QUICK START (5 MINUTES)
+
+## Option 1: Automatic (Easiest) 🤖
+
+### Windows
+```powershell
+# Mở PowerShell và chạy:
+.\setup.ps1
+
+# Rồi theo hướng dẫn được in ra
+```
+
+### Mac/Linux
+```bash
+# Mở Terminal và chạy:
+chmod +x setup.sh
+./setup.sh
+
+# Rồi theo hướng dẫn được in ra
+```
+
+---
+
+## Option 2: Manual (Step by Step)
+
+### Terminal 1: Backend ⚙️
+```bash
+cd backend
+python -m venv venv
+
+# Windows:
+venv\Scripts\activate
+# Mac/Linux:
+source venv/bin/activate
+
+pip install -r requirements.txt
+python -m uvicorn app:app --reload
+```
+
+**✅ Backend ready at: http://localhost:8000**
+
+### Terminal 2: Frontend 🎨
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+**✅ Frontend ready at: http://localhost:3000**
+
+### Terminal 3: Test (Optional) 🧪
+```bash
+cd backend
+# Kích hoạt venv trước
+python test_api.py
+```
+
+---
+
+## 🌐 Now Open Browser
+
+### Demo URL:
+```
+http://localhost:3000/s/demo_token_123
+```
+
+---
+
+## 🎯 What You'll See
+
+1. **Header** - "Data Explorer" with token
+2. **Filters** - Dataset, Dimension, Measure, Date Range
+3. **Run Button** - Click to execute query
+4. **Chart** - Beautiful line/bar chart with data
+5. **Preview** - JSON data preview below
+
+---
+
+## 🧪 Quick Test
+
+### Try This Query:
+1. Dataset: `Orders`
+2. Dimension: `dt` (date)
+3. Measure: `revenue`
+4. Date: Last 7 days (default)
+5. Click "Run" ▶️
+
+**Expected Result**: Chart showing daily revenue 📊
+
+---
+
+## 🔑 Available Tokens
+
+Use these tokens to access the app:
+- `demo_token_123` ← Use this one
+- `prod_token_456`
+
+Just change URL:
+```
+http://localhost:3000/s/prod_token_456
+```
+
+---
+
+## 📊 Try Different Queries
+
+### Query 1: Orders by Platform
+- Dataset: `orders`
+- Dimension: `platform`
+- Measure: `orders` (count)
+
+### Query 2: Revenue by Product
+- Dataset: `orders`
+- Dimension: `product_name`
+- Measure: `revenue`
+
+### Query 3: Livestream Revenue
+- Dataset: `livestream`
+- Dimension: `dt`
+- Measure: `revenue`
+
+---
+
+## 🛠️ Troubleshooting
+
+### Backend won't start
+```
+Error: ModuleNotFoundError
+Solution: pip install -r requirements.txt
+```
+
+### Frontend won't start
+```
+Error: npm: command not found
+Solution: Install Node.js from nodejs.org
+```
+
+### Port 8000 already in use
+```bash
+python -m uvicorn app:app --reload --port 8001
+```
+
+### Port 3000 already in use
+```
+Next.js will use 3001 automatically
+```
+
+---
+
+## 📚 Documentation
+
+Quick docs if you need help:
+
+| Document | For What |
+|----------|----------|
+| GETTING_STARTED.md | Full setup guide |
+| CHEAT_SHEET.md | Quick reference |
+| ARCHITECTURE.md | How it's built |
+| DIAGRAMS.md | Visual flows |
+
+---
+
+## ✅ Success Checklist
+
+- [ ] Backend running on 8000 ✓
+- [ ] Frontend running on 3000 ✓
+- [ ] Can access http://localhost:3000/s/demo_token_123
+- [ ] Can select dataset ✓
+- [ ] Can select dimension ✓
+- [ ] Can select measure ✓
+- [ ] Can click "Run" and see chart ✓
+- [ ] Data looks realistic ✓
+
+---
+
+## 🎉 Ready!
+
+That's it! You're all set!
+
+Now explore your data and have fun! 🚀
+
+---
+
+## 💡 Next Steps
+
+1. **Explore** - Try different queries
+2. **Understand** - Read ARCHITECTURE.md
+3. **Modify** - Change colors, add datasets
+4. **Extend** - Connect real BigQuery
+5. **Deploy** - Use docker-compose
+
+---
+
+**Questions?** Check the docs or run `python test_api.py` to verify everything works.
+
+Happy exploring! 📊✨
