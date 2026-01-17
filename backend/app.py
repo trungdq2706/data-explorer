@@ -21,13 +21,13 @@ print("ENV CORS_ORIGINS =", os.getenv("CORS_ORIGINS"))
 print("CONFIG CORS_ORIGINS =", config.CORS_ORIGINS)
 
 # Add CORS middleware
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=config.CORS_ORIGINS,
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=config.CORS_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Include routes
 app.include_router(datasets.router)
