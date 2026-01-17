@@ -23,12 +23,24 @@ SHARE_TOKENS: dict[str, dict] = {
 MAX_QUERY_LIMIT: int = 5000
 DEFAULT_QUERY_LIMIT: int = 500
 
-# CORS Config
-CORS_ORIGINS: list[str] = [
-    "http://localhost:3000",
-    "http://localhost:8000",
-    "http://192.168.4.92:3000",
-    "https://data-explorer-alpha.vercel.app"
-]
+# # CORS Config
+# CORS_ORIGINS: list[str] = [
+#     "http://localhost:3000",
+#     "http://localhost:8000",
+#     "http://192.168.4.92:3000",
+#     "https://data-explorer-alpha.vercel.app"
+# ]
+
+import os
+
+# CORS Config (read from env)
+CORS_ORIGINS = os.getenv(
+    "CORS_ORIGINS",
+    "http://localhost:3000"
+).split(",")
+
+CORS_ORIGINS = [o.strip() for o in CORS_ORIGINS if o.strip()]
+
+
 # Logging Config
 LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
