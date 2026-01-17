@@ -4,8 +4,8 @@
  */
 
 // Backend API URL
-export const API_BASE_URL = "http://localhost:8000";
-
+//export const API_BASE_URL = "http://localhost:8000";
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 // Other configurations
 export const API_TIMEOUT = 30000; // 30 seconds
 export const DEFAULT_LIMIT = 500;
