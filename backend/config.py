@@ -3,7 +3,6 @@ Configuration settings for the backend application
 """
 import os
 from typing import Optional
-
 # FastAPI Config
 DEBUG: bool = os.getenv("DEBUG", "True").lower() == "true"
 API_TITLE: str = "Data Explorer API"
@@ -31,6 +30,5 @@ CORS_ORIGINS: list[str] = [
     "http://192.168.4.92:3000",
     "https://data-explorer-94tgic0g0-trungdq2706s-projects.vercel.app"
 ]
-
 # Logging Config
 LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
