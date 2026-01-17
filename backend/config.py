@@ -28,7 +28,7 @@ CORS_ORIGINS: list[str] = [
     "http://localhost:3000",
     "http://localhost:8000",
     "http://192.168.4.92:3000",
-    "https://data-explorer-94tgic0g0-trungdq2706s-projects.vercel.app"
+    "https://data-explorer-alpha.vercel.app"
 ]
 # Logging Config
 LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
